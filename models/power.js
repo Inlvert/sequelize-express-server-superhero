@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Superhero extends Model {
+  class Power extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,30 +11,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Superhero.hasMany(models.Power, {
+      Power.belongsTo(models.Superhero, {
         foreignKey: 'superheroId'
       })
     }
   }
-  Superhero.init({
-    nickname: {
+  Power.init({
+    superpowers: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    realName: {
+    catchPhrase: {
       type: DataTypes.STRING,
-      field: 'real_name'
-    },
-    originDescription: {
-      type: DataTypes.TEXT,
-      field: 'origin_description'
+      field: 'catch_phrase'
     }
   }, {
     sequelize,
-    modelName: 'Superhero',
+    modelName: 'Power',
     underscored: true,
-    tableName: 'superheros'
-    
+    tableName: 'powers'
   });
-  return Superhero;
+  return Power;
 };
