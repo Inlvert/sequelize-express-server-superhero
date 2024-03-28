@@ -13,8 +13,9 @@ module.exports.findSuperhero = async (req, res, next) => {
       return next(createHttpError(404, 'superhero not found'));
     }
 
-    res.send(superhero);
+    req.superhero = superhero;
 
+    next();
   } catch (error) {
     next(error);
   }
