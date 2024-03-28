@@ -9,7 +9,7 @@ module.exports.createSuperhero = async (req, res, next) => {
 
     console.log(superhero);
 
-    res.send({data: superhero});
+    res.send({ data: superhero });
   } catch (error) {
     next(error);
   }
@@ -21,7 +21,7 @@ module.exports.getAllSuperheros = async (req, res, next) => {
 
     console.log(superhero);
 
-    res.send({data: superhero});
+    res.send({ data: superhero });
   } catch (error) {
     next(erroe);
   }
@@ -38,6 +38,20 @@ module.exports.getOneSuperhero = async (req, res, next) => {
     if (!superhero) {
       return next(createHttpError(404, "superhero not found"));
     }
+
+    console.log(superhero);
+
+    res.send({ data: superhero });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.deleteSuperhero = async (req, res, next) => {
+  try {
+    const { superhero } = req;
+
+    await superhero.destroy();
 
     console.log(superhero);
 
