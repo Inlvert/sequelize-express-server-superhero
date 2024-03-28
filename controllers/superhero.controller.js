@@ -60,3 +60,17 @@ module.exports.deleteSuperhero = async (req, res, next) => {
     next(error);
   }
 };
+
+
+module.exports.updateSuperhero = async (req, res, next) => {
+  try {
+    const {superhero, body} = req;
+
+    await superhero.update(body);
+
+    res.send({ data: superhero });
+
+  } catch (error) {
+    next(error);
+  }
+}
