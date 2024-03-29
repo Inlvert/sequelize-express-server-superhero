@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Superhero.hasMany(models.Power, {
         foreignKey: 'superheroId'
+      });
+
+      Superhero.belongsToMany(models.Image, {
+        through: 'superheros_to_images',
+        foreignKey: 'superheroId'
       })
     }
   }
