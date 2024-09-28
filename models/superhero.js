@@ -15,8 +15,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'superheroId'
       });
 
-      Superhero.belongsToMany(models.Image, {
-        through: 'superheros_to_images',
+      Superhero.belongsToMany(models.Group, {
+        through: 'superhero_to_groups',
         foreignKey: 'superheroId'
       })
     }

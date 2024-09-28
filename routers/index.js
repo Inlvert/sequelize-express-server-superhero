@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const imageRouter = require('./imageRouter');
+const groupRouter = require('./groupRouter');
 const superheroRouter = require('./superheroRouter');
 
 
 router.use('/superheros', superheroRouter);
-router.use('/images', imageRouter);
+router.use('/groups', groupRouter);
 
 
 

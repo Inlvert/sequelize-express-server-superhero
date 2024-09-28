@@ -3,32 +3,30 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
-     */
-    await queryInterface.createTable('superheros_to_images', {
+    await queryInterface.createTable('superhero_to_groups', {
       superheroId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        primaryKey: true,
         field: 'superhero_id',
+        primaryKey: true,
         references: {
-          model: 'superheros',
+          model: {
+            tableName: 'superheros'
+          },
           key: 'id'
         },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
       },
-      imageId: {
+      groupId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        field: 'group_id',
         primaryKey: true,
-        field: 'image_id',
         references: {
-          model: 'images',
+          model: {
+            tableName: 'groups'
+          },
           key: 'id'
         },
         onDelete: 'CASCADE',
@@ -44,17 +42,10 @@ module.exports = {
         type: Sequelize.DATE,
         field: 'updated_at'
       }
-
     })
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
-    await queryInterface.dropTable('superheros_to_images')
+    await queryInterface.dropTable('superhero_to_groups')
   }
 };
